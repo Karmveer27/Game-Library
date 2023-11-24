@@ -1,0 +1,147 @@
+
+.game-grid {
+    max-height: 200px ;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+    max-width: 1200px; /* Adjust this width as needed */
+}
+
+
+.game-card {
+    position: relative;
+    max-height: 200px ;
+    border: 1px solid #FF0800;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+
+}
+
+
+
+.game-card img {
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto;
+    images-align: center;
+}
+
+.libary-page{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.library-cont{
+    flex: 1;
+    display: flex;
+}
+
+
+
+
+.pagination {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+
+.pagination a {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 3px;
+    border: 1px solid #ddd;
+    background-color: #333;
+    color: #f2f2f2;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.pagination strong {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 3px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 3px;
+}
+
+
+.pagination a[href$="first"],
+.pagination a[href$="last"] {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+
+.pagination a[href$="previous"],
+.pagination a[href$="next"] {
+    background-color: #ddd;
+    font-weight: bold;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}
+
+.library-cont {
+    display: flex;
+    max-width: 1400px;
+    margin: 20px auto;
+}
+
+
+.sidebar {
+    width: 25%;
+    padding: 0 20px;
+    background-color: #1b182b;
+    height: 100%; /* Remove the fixed height for the sidebar */
+    min-height: 100vh; /* Use min-height to ensure it takes at least the viewport height */
+    box-sizing: border-box; /* Include padding in height calculation */
+}
+
+.sidebar-content {
+    padding-bottom: 20px; /* Add padding to prevent content from touching the bottom */
+}
+
+.genre-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #1b182b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.genre-button:hover {
+    background-color: #FF0800;
+}
+
+.heart {
+    color: lightgray;
+    display: none;
+    position: absolute;
+    bottom: 2px;
+    right: 10px;
+    font-size: 50px;
+
+
+}
+
+.heart:hover{
+    cursor: pointer;
+}
+
+.red {
+    color: red;
+}
+
+

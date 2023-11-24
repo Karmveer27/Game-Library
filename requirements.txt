@@ -1,0 +1,8 @@
+pytest
+Flask==2.3.2
+python-dotenv~=1.0.0
+werkzeug~=2.3.7
+WTForms~=3.0.1
+Flask-WTF
+password-validator
+SQLAlchemy==1.4.41

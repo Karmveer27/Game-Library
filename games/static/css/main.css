@@ -1,0 +1,20 @@
+:root{
+    --main-color: #fa5353;
+    --dark-color: #1b182b;
+    --light-color: #322f40;
+
+
+}
+
+.hidden {
+    display: none;
+    transform: translateY(-1000000%);
+}
+#content{
+    padding-top: 40px;
+}
+
+
+
+
+

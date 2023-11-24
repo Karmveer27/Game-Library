@@ -1,0 +1,71 @@
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ensure full viewport height */
+    margin: 0; /* Remove default margin */
+    background-color: #f5f5f5; /* Set a background color for the body */
+}
+/* Style for the form container */
+.form-wrapper {
+    max-width: 400px; /* Adjust the maximum width as needed */
+    margin: 20px auto; /* Center the form both horizontally and vertically */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    z-index: 1; /* Ensure the form appears above the navigation bar */
+}
+
+/* Style for form labels */
+.form-field label {
+    font-weight: bold;
+    color: black; /* Set text color to black */
+}
+
+/* Style for text inputs and textareas */
+.form-field input[type="text"],
+.form-field input[type="number"], /* Apply the text color to number inputs */
+.form-field textarea {
+
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: black; /* Set text color to black */
+}
+
+/* Increase the width of the integer input */
+.form-field input[type="number"] {
+    width: 80%; /* Adjust the width as needed */
+}
+
+/* Style for form submit button */
+/* Style for form submit button */
+.submission input[type="submit"] {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff6347; /* Red color */
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.submission input[type="submit"]:hover {
+    background-color: #d10000; /* Darker red color on hover */
+}
+
+.errors ul{
+    color: black;
+}
+
+.errors li{
+    color: black;
+}

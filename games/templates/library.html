@@ -1,0 +1,135 @@
+<link rel="stylesheet" href="../static/css/library.css"/>
+<link rel="stylesheet" href="../static/css/navigation.css"/>
+<link rel="stylesheet" href="../static/css/main.css"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/library.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/navigation.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/main.css') }}">
+
+{% extends 'layout.html' %}
+
+
+
+{% block content %}
+
+
+
+<div class="libary-page">
+
+    <div class="library-cont">
+
+            <div class="sidebar">
+            <h2>Genres</h2>
+            <div class="sidebar-content">
+            <ul class="genre-list">
+
+                <li>
+                    <button class="genre-button" onclick="window.location.href='{{ url_for('library_bp.library', page=1) }}'">
+                            All Games
+                        </button>
+                </li>
+
+                {% for genre in genres %}
+
+                    <li>
+                        <button class="genre-button" onclick="window.location.href='{{ url_for('library_bp.library', genre_required=genre, page=1) }}'">
+                            {{ genre }}
+                        </button>
+                    </li>
+                {% endfor %}
+            </ul>
+            </div>
+
+        </div>
+
+
+
+        <div class="game-grid">
+            {% for game in games %}
+                <div class="game-card" id="{{ game['game_id'] }}" >
+                    <h3>{{ game['title'] }}</h3>
+                    <img src="{{ game['image_url'] }}" alt="Game Image">
+                    <a href="{{ url_for('library_bp.game_detail', id=game['game_id']) }}">View Details</a>
+
+
+
+                    {% if user_authenticated %}
+                        {% if game['game_id'] in liked_games %}
+                          <a href="{{ url_for('profile_bp.add_game', gameID=game['game_id']) }}"><span class="heart logged_in red"  id="heart{{ game['game_id'] }}" >&#9829;</span> </a>
+                        {% else %}
+                          <a href="{{ url_for('profile_bp.add_game', gameID=game['game_id']) }}"><span class="heart logged_in"  id="heart{{ game['game_id'] }}" >&#9829;</span> </a>
+                        {% endif %}
+                    {% else %}
+                        <a href="{{ url_for('authentication_bp.login')}}"> <span class="heart"  id="heart{{ game['game_id'] }}" >&#9829;</span> </a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="pagination">
+        {% if has_prev %}
+            {% if genre_required %}
+                <a href="{{ url_for('library_bp.library', page=1, genre_required=genre_required) }}">first</a>
+            {% else %}
+                <a href="{{ url_for('library_bp.library', page=1) }}">first</a>
+            {% endif %}
+        {% endif %}
+
+        {% if prev_3_pages is defined and prev_3_pages %}
+            {% if genre_required %}
+                <a href="{{ url_for('library_bp.library', page=prev_3_pages[0], genre_required=genre_required) }}">First</a>
+            {% else %}
+                <a href="{{ url_for('library_bp.library', page=prev_3_pages[0]) }}">First</a>
+            {% endif %}
+            {% for page in prev_3_pages %}
+                {% if genre_required %}
+                    <a href="{{ url_for('library_bp.library', page=page, genre_required=genre_required) }}">{{ page }}</a>
+                {% else %}
+                    <a href="{{ url_for('library_bp.library', page=page) }}">{{ page }}</a>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <strong>{{ current_page }}</strong>
+
+        {% if next_3_pages is defined and next_3_pages %}
+            {% for page in next_3_pages %}
+                {% if genre_required %}
+                    <a href="{{ url_for('library_bp.library', page=page, genre_required=genre_required) }}">{{ page }}</a>
+                {% else %}
+                    <a href="{{ url_for('library_bp.library', page=page) }}">{{ page }}</a>
+                {% endif %}
+            {% endfor %}
+            {% if genre_required %}
+                <a href="{{ url_for('library_bp.library', page=last_page, genre_required=genre_required) }}">Last</a>
+            {% else %}
+                <a href="{{ url_for('library_bp.library', page=last_page) }}">Last</a>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+    <script>
+
+        const logStatusChecker = "{{ log_status }}";
+        console.log("Log Status: " + logStatusChecker);
+        if (logStatusChecker == "True") {
+            var logStatus = document.getElementById("log-status");
+            logStatus.style.color = "green";
+            logStatus.innerText = "Logged In";
+
+            document.getElementById("login-button").style.display = "none";
+            document.getElementById("register-button").style.display = "none";
+            document.getElementById("logout-button").style.display = "inline";
+        } else {
+            console.log("not logged")
+            document.getElementById("logout-button").style.display = "none";
+        }
+    </script>
+
+    <script src="../static/js/library.js"></script>
+    <script src="../static/js/navigation.js"></script>
+
+    <script src="{{ url_for('static', filename='js/library.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
+
+{% endblock %}

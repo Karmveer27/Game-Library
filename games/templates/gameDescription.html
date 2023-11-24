@@ -1,0 +1,91 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/game_description.css') }}">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/navigation.css') }}">
+<link rel = "stylesheet" href = "../static/css/game_description.css">
+<link rel = "stylesheet" href = "../static/css/layout.css">
+<link rel = "stylesheet" href = "../static/css/navigation.css">
+
+
+
+{% extends 'layout.html' %}
+
+
+{% block content %}
+    <div class="container">
+        <header id="title">
+                    <h2 id="title">{{ game.title }}</h2>
+        </header>
+        <main id="main">
+            <div class="description">
+
+                <div class="media-details-container">
+                    {% if game.video_url %}
+                        <video src="{{ game.video_url }}" controls autoplay muted loop id="game_media"></video>
+                    {% else %}
+                        <img src="{{ game.image_url }}" id="game_media">
+                    {% endif %}
+                    <div id="details">
+                        <p><span class="detail_headers">Release Date:</span> {{ game.release_date }}</p>
+                        <br>
+                        <p><span class="detail_headers">Price:</span> ${{ game.price }} </p>
+                    <br>
+                        <p><span class="detail_headers">About:</span> {{ game.description }}</p>
+                    <br>
+                        <p><span class="detail_headers">Developers:</span> {{ game.developer }}</p>
+                    <br>
+                        <p><span class="detail_headers">Publishers:</span> {{ game.publisher.publisher_name }}</p>
+                    <br>
+                        <p><span class="detail_headers">Categories:</span> {{ game.categories }}</p>
+                    <br>
+                        <p><span class="detail_headers">Genres:</span>
+                            {% for genre in game.genres %}
+                                {{ genre.genre_name }}
+                            {% endfor %}
+                        </p>
+                    </div>
+
+
+                </div>
+                    <div id="reviews">
+                        <h3>Reviews</h3>
+
+                        <p>Average Rating: {{ average_rating }}</p>
+
+
+                        <a href="{{ url_for('library_bp.review_game', game_id = game['game_id']) }}" class="add-review-button">Add Review</a>
+                        <ul class="review-list">
+                            {% for review in game.reviews|reverse %}
+                                <li>
+                                    {% if review is string %}
+                                        {{ review }}
+                                    {% else %}
+                                        {{ review.comment }}
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+            </div>
+        </main>
+    </div>
+    <script>
+
+        const logStatusChecker = "{{ log_status }}";
+        console.log("Log Status: " + logStatusChecker);
+        if (logStatusChecker == "True") {
+            var logStatus = document.getElementById("log-status");
+            logStatus.style.color = "green";
+            logStatus.innerText = "Logged In";
+
+            document.getElementById("login-button").style.display = "none";
+            document.getElementById("register-button").style.display = "none";
+            document.getElementById("logout-button").style.display = "inline";
+        } else {
+            console.log("not logged")
+            document.getElementById("logout-button").style.display = "none";
+
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+<link rel="stylesheet" href="../static/css/profile.css"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+
+{% block content %}
+<div id="overall_container">
+    <div id="header_container">
+        <h2 id="username">{{ user.username }}</h2>
+        <hr>
+        <h3 id="header">Your Favorite Games</h3>
+    </div>
+    <div id="content_container">
+        <div id="slideshow_container">
+            {% if likedGames %}
+                {% for game in likedGames %}
+                <div class="slide fade">
+                    <div id={{ game.title }}>
+                        <p>{{ game.title }}</p>
+                        <img src="{{ game.image_url }}">
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p id="suggestion" style="font-size: 20px">Navigate to our library and add games to your favorite list! </p>
+                <img src="../static/Images/batman.jpg" width="500px" class="slide fade">
+            {% endif %}
+        </div>
+        <div id="list_container">
+            {% if likedGames %}
+                <button type="button" id="show_games">Show All Games</button>
+                <div class="game-list-container">
+                    {% for game in likedGames %}
+                        <p1 class="game_title_list" style="display: none;">{{ game.title }}</p1>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+
+
+
+        </div>
+    </div>
+
+            <div id="noti-div">
+                {% if gameAdded is defined and title is defined %}
+                            {% if gameAdded %}
+                               <h2 id="notifcation1">
+
+                                   <span class="noti-bell">&#128276;</span>{{ title }} has been added to your favorite list!<span class="noti-bell">&#128276;</span>
+
+                               </h2>
+                            {% else %}
+                                  <h2 id="notifcation2">
+
+                                      <span class="noti-bell">&#128276;</span>{{ title }} has been removed from your favorite list!<span class="noti-bell">&#128276;</span>
+
+                                  </h2>
+                            {% endif %}
+                        {% else %}
+
+                        {% endif %}
+            </div>
+<br>
+<hr>
+    <div id="review_container">
+        <h1 id="header">Recent Reviews:</h1>
+        {% if user.reviews %}
+            <ul class="reviews">
+                {% for review in user.reviews %}
+                    <li>
+                        <p>Game: {{ review.game.title }} : {{ review.rating }}</p>
+                        <p>Comment: {{ review.comment }}</p>
+                        <br>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p id="empty_review">No reviews to show, Share your experiences with our available games! </p>
+        {% endif %}
+    </div>
+</div>
+<script src="../static/js/profile.js"></script>
+{% endblock %}

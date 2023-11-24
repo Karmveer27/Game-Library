@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expandin</title>
+    <link rel = "stylesheet" href = "../static/css/expanding_games.css">
+
+</head>
+<body>
+
+    <section class = "home container">
+        <img src = "../static/Images/cyberpunk.jpg">
+        <div class="home-text">
+            <h1> CITY OF THE <br> FUTURE</h1>
+            <a href="{{ url_for('library_bp.library') }}" class = "btn"> See More</a>
+        </div>
+
+
+    </section>
+
+
+
+
+
+        <div class = "container">
+            <div class = "panel active " style="background-image: url('https://cdn.akamai.steamstatic.com/steam/apps/7940/header.jpg?t=1646762118')">
+                <h3>Call of Duty</h3>
+            </div>
+            <div class = "panel" style="background-image: url('https://cdn.akamai.steamstatic.com/steam/apps/726870/header.jpg?t=1517414337')" >
+                <h3>Anchorhead</h3>
+            </div>
+            <div class = "panel " style="background-image: url('https://cdn.akamai.steamstatic.com/steam/apps/45750/header.jpg?t=1636428326')">
+                <h3>Lost Planet 2</h3>
+
+            </div>
+            <div class = "panel" style="background-image: url('https://cdn.akamai.steamstatic.com/steam/apps/240340/header.jpg?t=1562174711')">
+                <h3>Space Ace</h3>
+            </div>
+            <div class = "panel" style="background-image: url('../static/Images/batman.jpg')">
+                <h3>Lego Batman</h3>
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+<script src="../static/js/expanding_games.js"></script>
+</html>

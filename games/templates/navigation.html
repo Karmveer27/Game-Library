@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="../static/css/navigation.css"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/navigation.css') }}">
+<nav>
+
+
+
+
+    <header>
+        <a href="{{ url_for('home_bp.home') }}" class = "logo-container">  <img src="{{ url_for('static', filename='Images/silentArtifact.png') }}" class = "logo">  <span id="logo_title">Silent Artifact</span>   </a>
+
+        <ul class = "navbar">
+            <li> <a href ="{{ url_for('home_bp.home') }}" class= "nav_title ">  Home </a></li>
+            <li> <a href ="{{ url_for('library_bp.library') }}" class= "nav_title">         Library     </a></li>
+            <li> <a href ="{{ url_for('profile_bp.profile') }}" class= "nav_title">         Profile     </a></li>
+
+            <li> <a href ="{{ url_for('authentication_bp.login') }}" class= "nav_title" id="login-button">         Login     </a></li>
+            <li> <a href ="{{ url_for('authentication_bp.register') }}" class= "nav_title" id = "register-button">         Register     </a></li>
+
+            <li> <a href ="{{ url_for('authentication_bp.logout') }}" class= "nav_title" id = "logout-button" >         Logout     </a></li>
+
+            <li id="log-status">Not Logged In</li>
+
+
+        </ul>
+
+        <div class="main">
+
+            <form action="{{ url_for('search_bp.search') }}" method="GET" class="search-form">
+                <input type="text" name="search_query" placeholder="Search games...">
+                <select name="search_category">
+                    <option value="title">Title</option>
+                    <option value="publisher">Publisher</option>
+                    <option value="genre">Genre</option>
+                </select>
+                <button type="submit">Search</button>
+            </form>
+
+
+        </div>
+
+
+
+
+    </header>
+
+     <script>
+
+        const logStatusChecker = "{{ log_status }}";
+        console.log("Log Status: " + logStatusChecker);
+        if (logStatusChecker == "True") {
+            var logStatus = document.getElementById("log-status");
+            logStatus.style.color = "green";
+            logStatus.innerText = "Logged In";
+
+            document.getElementById("login-button").style.display = "none";
+            document.getElementById("register-button").style.display = "none";
+            document.getElementById("logout-button").style.display = "inline";
+        } else {
+            console.log("not logged nav")
+            document.getElementById("logout-button").style.display = "none";
+
+        }
+
+    </script>
+    <script src="../static/js/navigation.js"></script>
+</nav>
